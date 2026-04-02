@@ -212,13 +212,13 @@ static int init_ui(void)
 	lv_label_set_text(hello_label, "Hello!");
 	lv_obj_set_style_text_color(hello_label, lv_color_hex(0xFFFFFF), 0);
 	lv_obj_set_style_text_font(hello_label, &lv_font_montserrat_42, 0);
-	lv_obj_align(hello_label, LV_ALIGN_CENTER, 0, -18);
+	lv_obj_align(hello_label, LV_ALIGN_CENTER, 0, 0);
 
 	status_label = lv_label_create(screen);
 	lv_label_set_text(status_label, "Touch the screen");
 	lv_obj_set_style_text_color(status_label, lv_color_hex(0x8CFFB5), 0);
 	lv_obj_set_style_text_font(status_label, &lv_font_montserrat_14, 0);
-	lv_obj_align(status_label, LV_ALIGN_BOTTOM_MID, 0, -16);
+	lv_obj_align(status_label, LV_ALIGN_BOTTOM_MID, 0, -14);
 
 	touch_dot = lv_obj_create(screen);
 	lv_obj_remove_style_all(touch_dot);

@@ -1,6 +1,6 @@
 # Hacktor Basic
 
-Small Zephyr application for the `esp32s3_devkitc/esp32s3/procpu` that brings up a round SPI LCD and capacitive touch panel.
+Small Zephyr application for the `Hacktor Watch` that brings up a round SPI LCD and capacitive touch panel.
 
 The project currently does four things:
 
