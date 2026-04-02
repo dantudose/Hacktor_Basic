@@ -25,11 +25,15 @@ FLASH_PORT="${FLASH_PORT:-${ESPTOOL_PORT:-}}"
 FLASH_BAUD="${FLASH_BAUD:-}"
 
 PRISTINE=0
+CLEAN_ONLY=0
 RUN_FLASH=0
 ERASE_FLASH=0
 
 while [ $# -gt 0 ]; do
     case "$1" in
+        -c|--clean)
+            CLEAN_ONLY=1
+            ;;
         -p|--pristine)
             PRISTINE=1
             ;;
@@ -57,7 +61,7 @@ while [ $# -gt 0 ]; do
             ;;
         -h|--help)
             cat <<EOF
-Usage: ./build.sh [--pristine] [--flash] [--port <device>] [--baud <rate>] [--erase]
+Usage: ./build.sh [--clean] [--pristine] [--flash] [--port <device>] [--baud <rate>] [--erase]
 
 Environment overrides:
   BOARD=<board target>       Default: $DEFAULT_BOARD
@@ -65,6 +69,11 @@ Environment overrides:
   ZEPHYR_BASE=<zephyr path>  Auto-detected from ../zephyr if unset
   FLASH_PORT=<device>        Serial port for flashing
   FLASH_BAUD=<rate>          Serial baud rate for flashing
+
+Options:
+  --clean                    Remove build directory and exit
+  --pristine                 Remove build directory, then configure and build
+  --flash, --upload          Flash after build
 EOF
             exit 0
             ;;
@@ -75,6 +84,12 @@ EOF
     esac
     shift
 done
+
+if [ "$CLEAN_ONLY" -eq 1 ]; then
+    rm -rf "$BUILD_DIR"
+    echo "Removed build directory: $BUILD_DIR"
+    exit 0
+fi
 
 if [ "$PRISTINE" -eq 1 ]; then
     rm -rf "$BUILD_DIR"
