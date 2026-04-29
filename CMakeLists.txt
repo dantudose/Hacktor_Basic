@@ -8,4 +8,5 @@ project(minimal_zephyr_app)
 target_sources(app PRIVATE
     src/main.c
     src/panel.c
+    src/assets/step_icon.c
 )
